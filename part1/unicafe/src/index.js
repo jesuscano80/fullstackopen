@@ -7,18 +7,20 @@ const Title= ({text}) =>{return (
 const Button = ({text, clickHandler}) => (
   <button onClick={clickHandler}> {text}</button>
 )
-const Display = ({text, counter, symbol}) =>(
-  <p> {text} {counter} {symbol}</p>
-  )
+const Display = ({text, counter, symbol}) =><tr>{text}<td> {counter} {symbol}</td></tr>
 const Statistics = (props) => {console.log(props); return(
   <div>
         <Title text="statistics"></Title>
+        <table>
+          <tbody>
         <Display text="Good" counter={props.statistics.good}></Display>
         <Display text="Neutral" counter={props.statistics.neutral}></Display>
         <Display text="Bad" counter={props.statistics.bad}></Display>
         <Display text="All" counter={props.statistics.total}></Display>
         <Display text="Average" counter={props.statistics.average}></Display>
         <Display text="Positive" counter={props.statistics.positive} symbol="%"></Display>
+        </tbody>
+        </table>
  </div>
 )}
 const App = ()=>{
@@ -26,7 +28,7 @@ const App = ()=>{
   const [bad,setBad]=useState(0);
   const [neutral, setNeutral]=useState(0);
   const statistics={
-  good: good,
+  good,
   bad,
   neutral,
   total:  bad + good + neutral,
