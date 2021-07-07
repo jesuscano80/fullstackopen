@@ -12,30 +12,40 @@ const anecdotes = [
 const points= Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf,0);
 
 const copy=[...points];
+
 const Button= ({func, name})=> (
   <button onClick={func}>{name}</button>
 )
 
+const Title = ({name}) => (
+  <h1>{name}</h1>
+)
+
 const App = (props) => {
-  const [selected, setSelected] = useState(0)
+  const [selected, setSelected] = useState(0);
+  const [most, setMost] = useState(0);
   
   
   const randomAnecdote= ()=>{
     setSelected(Math.floor(Math.random() * anecdotes.length))
   }
-  const vote= ()=>{
-    
-    
+  const vote= ()=>{    
     setSelected(copy[selected]+=1);
-    console.log(copy);
+    setMost(copy.indexOf(Math.max(...copy)));
+    
+
   }
   return (
     <div>
+      <Title name="Anecdote of the day"></Title>
       {props.anecdotes[selected]}
       <p>has {copy[selected]} votes. </p>
       <br/>
       <Button func={vote} name="vote"></Button>
       <Button func={randomAnecdote} name="random"></Button>
+      <Title name="Anecdote with most votes"></Title>
+      <p>{props.anecdotes[most]}</p>
+
     </div>
   )
 }
