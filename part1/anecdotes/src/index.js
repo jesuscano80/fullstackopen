@@ -1,25 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Button= ({func, name})=> (
-  <button onClick={func}>{name}</button>
-)
-
-const App = (props) => {
-  const [selected, setSelected] = useState(0)
-
-  const randomAnecdote= ()=>{
-    setSelected(Math.floor(Math.random() * anecdotes.length))
-  }
-  return (
-    <div>
-      {props.anecdotes[selected]}
-      <br/>
-      <Button func={randomAnecdote} name="random"></Button>
-    </div>
-  )
-}
-
 const anecdotes = [
   'If it hurts, do it more often',
   'Adding manpower to a late software project makes it later!',
@@ -28,6 +9,38 @@ const anecdotes = [
   'Premature optimization is the root of all evil.',
   'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
 ]
+const points= Array.apply(null, new Array(anecdotes.length)).map(Number.prototype.valueOf,0);
+
+const copy=[...points];
+const Button= ({func, name})=> (
+  <button onClick={func}>{name}</button>
+)
+
+const App = (props) => {
+  const [selected, setSelected] = useState(0)
+  
+  
+  const randomAnecdote= ()=>{
+    setSelected(Math.floor(Math.random() * anecdotes.length))
+  }
+  const vote= ()=>{
+    
+    
+    setSelected(copy[selected]+=1);
+    console.log(copy);
+  }
+  return (
+    <div>
+      {props.anecdotes[selected]}
+      <p>has {copy[selected]} votes. </p>
+      <br/>
+      <Button func={vote} name="vote"></Button>
+      <Button func={randomAnecdote} name="random"></Button>
+    </div>
+  )
+}
+
+
 
 ReactDOM.render(
   <App anecdotes={anecdotes} />,
