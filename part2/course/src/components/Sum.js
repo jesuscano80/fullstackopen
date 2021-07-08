@@ -1,13 +1,12 @@
 import React from "react";
 
 const Sum = ({course}) =>{
-  let total=0;
-  course.parts.forEach(element => {
-        total+=element.exercises;      
-  });
-console.log(total);
+
+let total2=course.parts.reduce((a,b)=>{
+    return ({exercises:a.exercises+b.exercises});
+})
     return (
-        <b><div>Total of {total} exercises</div></b>)
+        <b><div>Total of {total2.exercises} exercises</div></b>)
 }
 
 export default Sum;
