@@ -7,9 +7,16 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
   const addPerson = (event)=>{
       event.preventDefault();
-      let newAdd= {name:newName};
-      setPersons(persons.concat(newAdd));
-      console.log(persons);
+      const arrayPosition=persons.map(person=> person.name).indexOf(newName);
+      if(arrayPosition===-1){   
+        let newAdd= {name:newName};
+        setPersons(persons.concat(newAdd));
+      }
+      else{
+          alert(`${newName} is already in Phonebook`)
+      }
+      
+      
   }
   const handleInput = (event)=>{
       setNewName(event.target.value);
