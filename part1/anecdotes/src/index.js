@@ -45,7 +45,8 @@ const App = (props) => {
       <Button func={randomAnecdote} name="random"></Button>
       <Title name="Anecdote with most votes"></Title>
       <p>{props.anecdotes[most]}</p>
-
+      
+      
     </div>
   )
 }
