@@ -5,7 +5,7 @@ const Sum = ({course}) =>{
 let total2=course.parts.reduce((a,b)=>{
     return ({exercises:a.exercises+b.exercises});
 })
-    return (
+  return (
         <b><div>Total of {total2.exercises} exercises</div></b>)
 }
 
