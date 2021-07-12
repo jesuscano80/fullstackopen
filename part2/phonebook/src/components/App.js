@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Filter from "./Filter";
 import Input from "./Input";
+import ShowAll from "./ShowAll";
 
 const App = (props) => {
   const [ persons, setPersons ] = useState([
@@ -64,9 +65,8 @@ const App = (props) => {
         </div>
       </form>
       <h2>Numbers</h2>
-    
-      <div> {persons.map(person=><p key={person.name}> {person.name} {person.phone}</p>)}</div>
-      
+  
+      <ShowAll show={persons}></ShowAll>
     </div>
   )
 }
