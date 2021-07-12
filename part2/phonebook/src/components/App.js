@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import Filter from "./Filter";
+import Input from "./Input";
 
-const App = () => {
+const App = (props) => {
   const [ persons, setPersons ] = useState([
     { name: 'Arto Hellas', phone: "004495" }
   ]) 
@@ -40,19 +42,22 @@ const App = () => {
   }
 
   const filterit = (event)=>{
+    console.log(event);
      setNewFilter((event.target.value).toLowerCase());
   }
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <p>Filter shown with: <input onChange={filterit}></input></p>
+      <Filter onChange={filterit}></Filter>
       <p>Found: {found.name} {found.phone}</p>
       <h3>Add new</h3>
       <form onSubmit={addPerson}>
         <div>
-          name: <input onChange={handleName} value={newName}/>
-          phone: <input onChange={handlePhone} value={newPhone}/> 
+          
+          <Input text="name:" onChange={handleName} value={newName}></Input>
+          <Input text="phone:" onChange={handlePhone} value={newPhone}></Input>
+        
         </div>
         <div>
           <button type="submit">add</button>

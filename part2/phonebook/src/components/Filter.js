@@ -1,12 +1,9 @@
 import React from "react";
 
-const Filter=()=>{
+const Filter=(props)=>{
 
-    const filterFunc=()=>{
-        
-    }
     return(<div>
-        <input onChange={filterFunc}></input>
+      <p>Filter shown with:   <input onChange={props.onChange}></input></p>
     </div>)
 }
 
