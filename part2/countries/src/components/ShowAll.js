@@ -1,7 +1,8 @@
 import React from "react";
+import Weather from "./Weather";
 
 const Showall = (props)=>{
-    console.log(props);
+    
     return (<>
     {props.array.map(elem=> 
         
@@ -14,7 +15,9 @@ const Showall = (props)=>{
         {elem.languages.map(languaje=> <li key={languaje.name}>{languaje.name}</li>)}
         </ul>
         <img id="theimage" src={elem.flag} alt={elem.name}></img>
+        <Weather city={elem.name} capital={elem.capital}></Weather>
         </div>)}
+        
     </>)
 }
 

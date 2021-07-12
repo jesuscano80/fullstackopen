@@ -3,7 +3,9 @@ import "./Found.css";
 import Showall from "./ShowAll";
 
 
+
 const Found = (props)=>{
+
   
     const showData=(elem)=>{
         props.set([elem]);
