@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 import Filter from "./Filter";
 import Input from "./Input";
@@ -11,6 +12,14 @@ const App = (props) => {
   const [ newPhone, setNewPhone ] = useState("")
   const [ filter, setNewFilter ] = useState("")
   const [ found, setNewFound ] = useState({})
+  const initialLoad = ()=>{
+    axios.get("http://localhost:3001/persons")
+    .then(response=> 
+      setPersons(response.data)
+    )
+  }
+  useEffect(initialLoad, []);
+  
   useEffect(() => { 
     const check=persons.map(person=> person.name.trim().toLowerCase()).indexOf(filter)
     console.log(filter);
