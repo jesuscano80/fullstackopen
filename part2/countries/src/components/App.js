@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 import Finder from "./Finder";
 import Found from "./Found";
 
-const App=()=>{
+const App=(props)=>{
 const [countries, setCountries]= useState([]);
 const [found,setFound] = useState([]);
     
@@ -35,7 +35,7 @@ const initialCharge=()=>{
         <>
             <Finder onChange={handleInput}></Finder>
             <br></br>
-            <Found text="Countries found:" array={found}></Found>
+            <Found text="Countries found:" array={found} set={setFound} found={found}></Found>
         </>
     )
 }

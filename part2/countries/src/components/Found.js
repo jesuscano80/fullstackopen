@@ -1,8 +1,13 @@
 import React from "react"
 import "./Found.css";
+import Showall from "./ShowAll";
+
 
 const Found = (props)=>{
-
+  
+    const showData=(elem)=>{
+        props.set([elem]);
+    }
     if (props.array.length>10){
         return (<p>Too many matches, specify another filter</p>)
     }
@@ -11,7 +16,7 @@ const Found = (props)=>{
         return (                 
             <>
             {props.text}
-            {props.array.map(elem=> <p key={elem.numericCode}>{elem.name}</p>)}
+            {props.array.map(elem=> <div key={elem.numericCode}><p>{elem.name} <button data={elem} onClick={()=> showData(elem)}>show</button></p></div>)}
             
             </>
         )
@@ -21,19 +26,9 @@ const Found = (props)=>{
        
         return (
             <>
-            {props.array.map(elem=> 
-        
-            <div key={elem.numericCode}>
-            <h1 >{elem.name}</h1>
-            <p>Capital: {elem.capital}</p>
-            <p>Population: {elem.population}</p>
-            <h3>Languajes:</h3>
-            <ul>
-            {elem.languages.map(languaje=> <li key={languaje.name}>{languaje.name}</li>)}
-            </ul>
-            <img id="theimage" src={elem.flag} alt={elem.name}></img>
-            </div>
-            )}
+           
+            <Showall array={props.array}></Showall>
+           
             </>
         )
     }
