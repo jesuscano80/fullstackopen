@@ -23,7 +23,8 @@ const App = (props) => {
       setPersons(response.data)
     )
   }
-  useEffect(initialLoad, []);
+  useEffect(initialLoad, [persons]);
+  
   
   useEffect(() => { 
     const check=persons.map(person=> person.name.trim().toLowerCase()).indexOf(filter)
@@ -84,7 +85,7 @@ const App = (props) => {
       </form>
       <h2>Numbers</h2>
   
-      <ShowAll show={persons}></ShowAll>
+      <ShowAll show={persons} setPersons={setPersons}></ShowAll>
     </div>
   )
 }
