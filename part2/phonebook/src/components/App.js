@@ -4,6 +4,9 @@ import Filter from "./Filter";
 import Input from "./Input";
 import ShowAll from "./ShowAll";
 
+
+
+
 const App = (props) => {
   const [ persons, setPersons ] = useState([
     { name: 'Arto Hellas', phone: "004495" }
@@ -35,7 +38,12 @@ const App = (props) => {
       event.preventDefault();
       const arrayPosition=persons.map(person=> person.name).indexOf(newName);
       if(arrayPosition===-1){   
-        let newAdd= {name:newName, phone: newPhone};
+        let newAdd= {name:newName, number: newPhone};
+        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+        axios.post(
+          "http://localhost:3001/persons", newAdd)
+        .then(data=> console.log(data))
+        .catch(err=> console.log(err))
         setPersons(persons.concat(newAdd));
       }
       else{
