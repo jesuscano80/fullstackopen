@@ -13,8 +13,8 @@ const getOne = (person)=>{
     return axios.get(`${url}/${person}`)
 }
 
-const update = (person)=>{
-    return axios.put(`${url}/${person}`)
+const update = (person,data)=>{
+    return axios.put(`${url}/${person}`,data)
 }
 
 const deleteOne = (person)=>{

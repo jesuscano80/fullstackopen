@@ -28,9 +28,8 @@ const App = (props) => {
   
   useEffect(() => { 
     const check=persons.map(person=> person.name.trim().toLowerCase()).indexOf(filter)
-    console.log(filter);
-    console.log(persons.map(person=> person.name.trim().toLowerCase()));
-    console.log(check);
+    
+    
     if(check>=0){
         console.log("si está");
         setNewFound(persons[check])
@@ -49,7 +48,12 @@ const App = (props) => {
         setPersons(persons.concat(newAdd));
       }
       else{
-          alert(`${newName} is already in Phonebook`)
+          let newAdd= {name:newName, number: newPhone};
+          console.log(newAdd);
+          if(window.confirm(`${newName} is already in Phonebook, do you want to replace phone number?`)){
+          server.update(persons[arrayPosition].id,newAdd);
+          
+          }
       }
       
       
@@ -62,7 +66,7 @@ const App = (props) => {
   }
 
   const filterit = (event)=>{
-    console.log(event);
+    
      setNewFilter((event.target.value).toLowerCase());
   }
 
