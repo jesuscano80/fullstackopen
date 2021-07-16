@@ -1,8 +1,9 @@
-import axios from 'axios';
+
 import React, { useState, useEffect } from 'react'
 import Filter from "./Filter";
 import Input from "./Input";
 import ShowAll from "./ShowAll";
+import server from "./backend";
 
 
 
@@ -16,7 +17,8 @@ const App = (props) => {
   const [ filter, setNewFilter ] = useState("")
   const [ found, setNewFound ] = useState({})
   const initialLoad = ()=>{
-    axios.get("http://localhost:3001/persons")
+    
+    server.getAll()
     .then(response=> 
       setPersons(response.data)
     )
@@ -39,9 +41,8 @@ const App = (props) => {
       const arrayPosition=persons.map(person=> person.name).indexOf(newName);
       if(arrayPosition===-1){   
         let newAdd= {name:newName, number: newPhone};
-        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-        axios.post(
-          "http://localhost:3001/persons", newAdd)
+        
+        server.postOne(newAdd)
         .then(data=> console.log(data))
         .catch(err=> console.log(err))
         setPersons(persons.concat(newAdd));
